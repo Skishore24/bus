@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Successful</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/921/988/30/mercedes-benz-autonomous-electric-bus-future-bus-wallpaper-preview.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .confirmation-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #28a745;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="confirmation-container">
+        <h1>Booking Successful!</h1>
+        <p>Your booking has been confirmed.</p>
+        <p>Thank you for choosing our service!</p>
+        <a href="booking.html">Back to Booking</a>
+    </div>
+
+    <script>
+        // Retrieve booking information from local storage
+        const booking = JSON.parse(localStorage.getItem('booking'));
+        
+            // Clear local storage after use
+            localStorage.removeItem('booking');
+        
+    </script>
+
+</body>
+
+</html>

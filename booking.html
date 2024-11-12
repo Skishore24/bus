@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <link rel="booking-success" href="booking-success.html">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/921/988/30/mercedes-benz-autonomous-electric-bus-future-bus-wallpaper-preview.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select,
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            font-size: 1rem;
+            transition: border 0.3s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border: 2px solid #28a745;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+        }
+
+        #route-image-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        #route-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            transition: transform 0.3s ease;
+        }
+
+        #route-image:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            padding: 12px 0;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        button .arrow-icon {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        button:hover .arrow-icon {
+            transform: translateX(5px);
+        }
+
+        #confirmation {
+            display: none;
+            background-color: #e6f7e6;
+            padding: 20px;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            margin-top: 20px;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        #confirmation h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        #confirmation-text {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* New Section for Amount */
+        #amount {
+            font-size: 1.5rem;
+            color: #28a745;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Bus Ticket Booking</h1>
+
+        <form  action="insert.php" method="post">
+            <!-- Select Bus Route -->
+            <label for="route">Select Bus Route:</label>
+            <select id="route" name="route" required>
+                <option value="Pollachi-Chennai" >Pollachi-Chennai</option>
+                <option value="Chennai-Karaikudi" >Chennai-Karaikudi</option>
+                <option value="Chennai-Mumbai" >Chennai-Mumbai</option>
+            </select>
+
+            <!-- Select Number of Seats -->
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" name="seats" min="1" max="10" required>
+
+            <!-- Display Total Amount -->
+            <div name="amount">Total A ₹0</div>
+
+            <!-- Customer Name -->
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <!-- Customer Email -->
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- Submit Button -->
+            <button type="submit">
+                <span><a href="booking-success.html">Book now</a></span>
+                
+                <img src="https://via.placeholder.com/20x20/28a745/FFFFFF?text=%3E" alt="Arrow Icon" class="arrow-icon" />
+            </button>
+        </form>
+
+        <div id="confirmation" class="hidden">
+            <h2>Booking Confirmation</h2>
+            <p id="confirmation-text"></p>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
